@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('http://localhost/9000', {
+const connectionString = 'mongodb://localhost/dropdown';
+
+
+mongoose.connect(connectionString, {
   useNewUrlParser: true
 })
 

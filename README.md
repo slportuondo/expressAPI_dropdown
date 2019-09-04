@@ -35,11 +35,11 @@ DropDown is a full stack application that allows people to grab or screenshot im
 ## Routes/Endpoints
 
 #### CHROME APP
-| 	     | HTTP VERB | URL           | DESCRIPTION	  	  		                      |
-| ------ | :---------| :-------------| :--------------------------------------------|
-| 		   | POST	     | /             | create a new session         	              |
-|		     | GET		   | /             | retrieve the current session key             |
-| 		   | POST	     | /drop         | drop an image to the database	              |
+| 	     | HTTP VERB | URL              | DESCRIPTION	  	  		                      |
+| ------ | :---------| :----------------| :-------------------------------------------|
+| 		   | POST	     | /                | create a new session         	              |
+|		     | GET		   | /:currentSession | retrieve the current session key            |
+| 		   | POST	     | /drop            | drop an image to the database	              |
 
 
 
