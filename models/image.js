@@ -6,7 +6,7 @@ const imageModel = new mongoose.Schema({
     ref: 'User'
   },
   title: String,
-  foundOnURL: String, //In case users later want to see what website they dropped the image from
+  foundOnURL: String,
   img: {
     data: Buffer,
     contentType: String

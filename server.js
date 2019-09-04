@@ -11,6 +11,9 @@ app.use(bodyParser.json())
 const sessionController = require('./controllers/sessionController.js')
 app.use('/session', sessionController)
 
+const dropController = require('./controllers/dropController.js')
+app.use('/drop', dropController)
+
 const PORT = 3000
 
 app.listen(PORT, () => {
