@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const imageModel = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,  // ._id
-    ref: 'User'
+    ref: 'Session'
   },
   title: String,
   foundOnURL: String,

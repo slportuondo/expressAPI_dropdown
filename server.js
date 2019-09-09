@@ -1,5 +1,5 @@
 require('dotenv').config()
-
+const cors = require('cors')
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -7,6 +7,9 @@ require('./db/db')
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
+
+app.use(cors());
+
 
 const sessionController = require('./controllers/sessionController.js')
 app.use('/session', sessionController)
