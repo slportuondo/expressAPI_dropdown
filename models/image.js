@@ -7,10 +7,7 @@ const imageModel = new mongoose.Schema({
   },
   title: String,
   foundOnURL: String,
-  img: {
-    data: Buffer,
-    contentType: String
-  },
+  imgURI: String,
   date: {
     type: Date,
     default: Date.now
