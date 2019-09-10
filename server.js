@@ -11,11 +11,15 @@ app.use(bodyParser.json())
 app.use(cors());
 
 
+
 const sessionController = require('./controllers/sessionController.js')
 app.use('/session', sessionController)
 
 const dropController = require('./controllers/dropController.js')
 app.use('/drop', dropController)
+
+const droppedController = require('./controllers/droppedController.js')
+app.use('/dropped', droppedController)
 
 const PORT = 3000
 

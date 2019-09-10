@@ -5,7 +5,7 @@ const Session = require('../models/session.js')
 const superagent = require('superagent')
 
 router.post('/', async (req, res, next) => {
-	console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+
 	try {
 		let imageURI= req.body.srcUrl;
 
