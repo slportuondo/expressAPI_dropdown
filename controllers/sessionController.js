@@ -25,7 +25,7 @@ router.post('/', async (req, res, next) => {
 			Session.findOneAndRemove(currentSessionID)
 		}
 
-		const newSession = new Session
+		const newSession = new Session()
 		const randomKey = Math.floor(Math.random() * 89999999 + 10000000)
 
 		newSession.sessionName = req.body.sessionName
