@@ -25,17 +25,17 @@ router.post('/', async (req, res, next) => {
 		const createdImage = new Image;
 
 		// const foundOwner = await Session.findOne(req.body.id)
+		
     // createdImage.owner = foundOwner
     // createdImage.title = req.body.title
-    createdImage.foundOnURL = req.body.foundOnURL
-    createdImage.img.data = imageURI.body
-		createdImage.img.contentType = imageURI.headers['content-type']
-
+    createdImage.foundOnURL = req.body.foundOnURL;
+    createdImage.imgURI = imageURI;
 		await createdImage.save()
-    // Delete the file from the imagesDropped folder
+
     res.send('Your image has been dropped')
 	} catch(err) {
 		next(err)
+		res.send('Image could not be dropped')
 	}
 })
 
