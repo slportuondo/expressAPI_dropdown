@@ -3,6 +3,7 @@ const router = express.Router()
 const Image = require('../models/image.js')
 const Session = require('../models/session.js')
 const superagent = require('superagent')
+const bodyParser = require('body-parser')
 
 router.post('/', async (req, res, next) => {
 	try {
@@ -22,11 +23,11 @@ router.post('/', async (req, res, next) => {
 
 
 		const createdImage = new Image();
-    createdImage.foundOnURL = req.body.foundOnURL;
-    createdImage.imgURI = imageURI;
 		// const foundOwner = await Session.findOne(req.body.id)
 		// createdImage.owner = foundOwner
 		// createdImage.title = req.body.title
+    createdImage.foundOnURL = req.body.foundOnURL;
+    createdImage.imgURI = imageURI;
 		await createdImage.save()
 
     res.send('Your image has been dropped')

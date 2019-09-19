@@ -4,6 +4,7 @@ const Image = require('../models/image.js')
 const Session = require('../models/session.js')
 const bodyParser = require('body-parser')
 
+// Get the current session key
 router.get('/', async (req, res, next) => {
 	try {
 		const currentKey = await Session.findById(req.body.id)
@@ -17,6 +18,7 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
+// Create a new session
 router.post('/', async (req, res, next) => {
 	try {
 		const { currentSessionID, sessionName } = req.body
@@ -30,11 +32,9 @@ router.post('/', async (req, res, next) => {
 
 		newSession.sessionName = req.body.sessionName
 		newSession.sessionKey = randomKey
-		newSession.save()
+		await newSession.save()
 
-		res.json({
-			newSession: newSession
-		})
+		res.json(newSession)
 
 	} catch (err) {
 		next(err)
