@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Image = require('../models/image.js')
 const Session = require('../models/session.js')
-const superagent = require('superagent')
+const bodyParser = require('body-parser')
 
 
 router.get('/', async (req, res, next) => {
@@ -17,6 +17,16 @@ router.get('/', async (req, res, next) => {
 			droppedImages: foundImages
 		})
 
+	} catch (err) {
+		next(err)
+	}
+})
+
+// Delete route
+router.delete('/', async (req, res, next) => {
+	try {
+		const foundSession = await Image.deleteMany({'owner':req.body.id})
+		res.send('success!')
 	} catch (err) {
 		next(err)
 	}
