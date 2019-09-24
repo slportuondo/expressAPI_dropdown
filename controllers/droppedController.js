@@ -8,11 +8,11 @@ const bodyParser = require('body-parser')
 router.post('/', async (req, res, next) => {
 	try {
 		const foundImages = await Image.find({'owner':req.body.id})
-
+		console.log(foundImages);
 		res.json({
 			droppedImages: foundImages
 		})
-
+		console.log('anything');
 	} catch (err) {
 		next(err)
 	}

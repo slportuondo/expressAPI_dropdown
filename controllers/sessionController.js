@@ -6,8 +6,6 @@ const bodyParser = require('body-parser')
 
 // Session auth
 router.post('/login', async (req, res, next) => {
-
-	console.log('this is the request: ', req.body);
   // Query database to verify that user exists
   try {
     const sessionFound = await Session.findOne({sessionName: req.body.sessionName})
@@ -35,13 +33,11 @@ router.post('/login', async (req, res, next) => {
 
 
 // Get the current session key
-router.get('/', async (req, res, next) => {
+router.post('/key', async (req, res, next) => {
 	try {
-		const currentKey = await Session.findById(req.body.id)
+		const currentSession = await Session.findById(req.body.currentSessionId)
 
-		res.json({
-			currentKey: currentKey.sessionKey
-		})
+		res.json({ currentKey: currentSession.sessionKey })
 
 	} catch (err) {
 		next(err)
@@ -49,8 +45,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // Create a new session
-router.post('/', async (req, res, next) => {
-	console.log('^^^^^^^^^^')
+router.post('/new', async (req, res, next) => {
 	try {
 		const { currentSessionID, sessionName } = req.body
 
