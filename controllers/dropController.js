@@ -10,7 +10,8 @@ router.post('/', async (req, res, next) => {
 		let imageURI= req.body.srcURL;
 
 		// Fetches image from given url and returns the data as a Buffer array
-		// This is necessary because while many src attribute values on chrome are already base64 encoded, we need to account for those that are not
+		// This is necessary because while many src attribute values on chrome are already base64 encoded,
+		// we need to account for those that are not
 		if (req.body.srcURL.indexOf('data:') == -1 || req.body.srcURL.indexOf(';base64,') == -1) {
 			const imageFileBuffer = await superagent.get(req.body.srcURL)
 			.buffer(true).parse(superagent.parse.image)
@@ -23,7 +24,6 @@ router.post('/', async (req, res, next) => {
 
 
 		const createdImage = new Image();
-		// const foundOwner = await Session.findOne(req.body.id)
 		createdImage.owner = req.body.sessionId
 		// createdImage.title = req.body.title
     createdImage.foundOnURL = req.body.foundOnURL;

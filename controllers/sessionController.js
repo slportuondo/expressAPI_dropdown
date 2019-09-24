@@ -36,8 +36,7 @@ router.post('/login', async (req, res, next) => {
 router.post('/key', async (req, res, next) => {
 	try {
 		const currentSession = await Session.findById(req.body.currentSessionId)
-
-		res.json({ currentKey: currentSession.sessionKey })
+		res.json({ sessionName: currentSession.sessionName, sessionKey: currentSession.sessionKey })
 
 	} catch (err) {
 		next(err)
