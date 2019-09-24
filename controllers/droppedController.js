@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 
 router.post('/', async (req, res, next) => {
 	try {
-		const foundImages = await Image.find({'owner':req.body.id})
+		const foundImages = await Image.find({'owner': req.body.id})
 		console.log(foundImages);
 		res.json({
 			droppedImages: foundImages
@@ -21,8 +21,10 @@ router.post('/', async (req, res, next) => {
 // Delete route
 router.delete('/', async (req, res, next) => {
 	try {
-		const foundSession = await Image.deleteMany({'owner':req.body.id})
-		res.send('success!')
+		await Image.deleteMany({'owner': req.body.id}, (err) => {
+			if (err) return handleError(err)
+			else res.send('success!')
+		})
 	} catch (err) {
 		next(err)
 	}
