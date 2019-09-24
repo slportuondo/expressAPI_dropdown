@@ -5,13 +5,9 @@ const Session = require('../models/session.js')
 const bodyParser = require('body-parser')
 
 
-router.get('/', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
 	try {
-		// const currentKey = await Session.findById(req.body.id)
-    // const foundImages = await Image.find({owner: currentKey})
-
-    // const foundImages = await Image.find({}, {foundOnURL:1, _id:0})
-		const foundImages = await Image.find()
+		const foundImages = await Image.find({'owner':req.body.id})
 
 		res.json({
 			droppedImages: foundImages

@@ -24,7 +24,7 @@ router.post('/', async (req, res, next) => {
 
 		const createdImage = new Image();
 		// const foundOwner = await Session.findOne(req.body.id)
-		// createdImage.owner = foundOwner
+		createdImage.owner = req.body.sessionId
 		// createdImage.title = req.body.title
     createdImage.foundOnURL = req.body.foundOnURL;
     createdImage.imgURI = imageURI;

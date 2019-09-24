@@ -4,6 +4,36 @@ const Image = require('../models/image.js')
 const Session = require('../models/session.js')
 const bodyParser = require('body-parser')
 
+// Session auth
+router.post('/login', async (req, res, next) => {
+
+	console.log('this is the request: ', req.body);
+  // Query database to verify that user exists
+  try {
+    const sessionFound = await Session.findOne({sessionName: req.body.sessionName})
+
+    if (sessionFound) {
+      if (req.body.sessionKey == sessionFound.sessionKey) {
+        const response = res.json({
+					wasSuccessful : true,
+					sessionId : sessionFound._id
+				})
+      } else {
+				res.json({
+					wasSuccessful : 'false'
+				})
+      }
+    } else {
+			res.json({
+				wasSuccessful : 'false'
+			})
+		}
+  } catch (err) {
+    next(err);
+  }
+})
+
+
 // Get the current session key
 router.get('/', async (req, res, next) => {
 	try {
@@ -20,6 +50,7 @@ router.get('/', async (req, res, next) => {
 
 // Create a new session
 router.post('/', async (req, res, next) => {
+	console.log('^^^^^^^^^^')
 	try {
 		const { currentSessionID, sessionName } = req.body
 
